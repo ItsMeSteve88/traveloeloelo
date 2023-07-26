@@ -10,13 +10,17 @@ const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#454545",
+       main: "#fbeaab",
+       light: "#f1ba00",
+       dark: "#f48800"
     },
     secondary: {
-      main: "#454545",
+       main: "#abbcfb",
+       light: "#5372ea",
+       dark: "#3b53c4"
     },
     background: {
-      default: "#fbeaab",
+      default: "#",
     },
   },
   typography: {
@@ -74,7 +78,7 @@ const App = () =>
             alignItems: "center",
           }}
         >
-          <Map setCoords={setCoords} setBounds={setBounds} coords={coords} />
+              <Map setCoords={setCoords} setBounds={setBounds} coords={coords} places={places} />
         </Grid>
       </Grid>
     </ThemeProvider>
