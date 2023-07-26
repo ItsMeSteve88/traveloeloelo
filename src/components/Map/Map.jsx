@@ -4,10 +4,10 @@ import { Paper, Typography, Rating, useMediaQuery, Box } from '@mui/material'
 import { LocationOnOutlined } from '@mui/icons-material'
 
 
-const Map = () =>
+const Map = ({setCoords, setBounds, coords}) =>
 {
    const isMobile = useMediaQuery('(min-width: 600px)')
-   const coordinates = { lat: 0, lng: 0 }
+   
   return (
      <Box sx={{
         height: '85vh',
@@ -15,12 +15,16 @@ const Map = () =>
        }}>
         <GoogleMapReact
            bootstrapURLKeys={{ key: 'AIzaSyAX1LN2B6KphTxSg4Kf4jVKlhe2bLFNNUI'}}
-           defaultCenter={coordinates}
-           center={coordinates}
+           defaultCenter={coords}
+           center={coords}
            defaultZoom={14}
            margin={[50, 50, 50, 50]}
            options={''}
-           onChange={''}
+           onChange={(e) =>
+           {
+              setCoords({ lat: e.center.lat, lng: e.center.lng })
+              setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
+           }}
            onChildClick={''}
         >
            
