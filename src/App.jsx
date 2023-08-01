@@ -40,8 +40,12 @@ const theme = createTheme({
 const App = () =>
 {
    const [places, setPlaces] = useState([])
+   const [childClicked, setChildClicked] = useState(null)
+
    const [coords, setCoords] = useState({})
    const [bounds, setBounds] = useState({})
+
+   const [isLoading, setIsLoading] = useState(false)
 
    useEffect(() =>
    {
@@ -51,12 +55,14 @@ const App = () =>
       })
    }, []);
 
-   useEffect(() => {
+   useEffect(() =>
+   {
+      setIsLoading(true)
       getPlacesData(bounds.sw, bounds.ne)
          .then((data) =>
          {
-            console.log(data)
-         setPlaces(data)
+            setPlaces(data)
+            setIsLoading(false)
       })
    }, [bounds, coords])
    
@@ -66,7 +72,11 @@ const App = () =>
       <Header />
       <Grid container spacing={3} sx={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-          <List places={places} />
+          <List
+            places={places}
+            childClicked={childClicked}
+            isLoading={isLoading}
+          />
         </Grid>
         <Grid
           item
@@ -83,6 +93,7 @@ const App = () =>
             setBounds={setBounds}
             coords={coords}
             places={places}
+            setChildClicked={setChildClicked}
           />
         </Grid>
       </Grid>

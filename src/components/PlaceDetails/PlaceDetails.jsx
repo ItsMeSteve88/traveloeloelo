@@ -8,7 +8,9 @@ import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 
 
 
-const PlaceDetails = ({place}) => {
+const PlaceDetails = ({ place, selected, refProp }) =>
+{
+   if(selected) refProp?.current?.scrollIntoView({ behavior:'smooth', block: 'start' });
   return (
     <Card elevation={6} sx={{ bgcolor: "#fff" }}>
       <CardMedia

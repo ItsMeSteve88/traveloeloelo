@@ -4,7 +4,7 @@ import { Paper, Typography, Rating, useMediaQuery, Box } from '@mui/material'
 import { LocationOnOutlined } from '@mui/icons-material'
 
 
-const Map = ({setCoords, setBounds, coords, places}) =>
+const Map = ({setCoords, setBounds, coords, places, setChildClicked}) =>
 {
    const isDesktop = useMediaQuery('(min-width: 600px)')
 
@@ -45,7 +45,7 @@ const Map = ({setCoords, setBounds, coords, places}) =>
           setCoords({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
-        onChildClick={""}
+        onChildClick={(child) => setChildClicked(child)}
       >
         {places?.map((place, i) => (
           <Box
