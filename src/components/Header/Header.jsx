@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -72,7 +73,8 @@ export default function SearchAppBar() {
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
               Explore new places
-            </Typography>
+                 </Typography>
+                 
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />

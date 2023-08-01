@@ -45,6 +45,8 @@ const App = () =>
    const [coords, setCoords] = useState({})
    const [bounds, setBounds] = useState({})
 
+   const [filteredPlaces, setFilteredPlaces] = useState([]);
+
    const [type, setType] = useState('restaurants')
    const [rating, setRating] = useState('')
 
@@ -60,11 +62,18 @@ const App = () =>
 
    useEffect(() =>
    {
+      const filteredPlaces = places.filter(place => place.rating > rating)
+      setFilteredPlaces(filteredPlaces)
+   },[rating])
+
+   useEffect(() =>
+   {
       setIsLoading(true)
       getPlacesData(type, bounds.sw, bounds.ne)
          .then((data) =>
          {
             setPlaces(data)
+            setFilteredPlaces([]) 
             setIsLoading(false)
       })
    }, [type, bounds, coords])
@@ -76,7 +85,7 @@ const App = () =>
       <Grid container spacing={3} sx={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           <List
-            places={places}
+            places={filteredPlaces.length ? filteredPlaces : places}
             childClicked={childClicked}
                  isLoading={isLoading}
                  type={type}
@@ -99,7 +108,7 @@ const App = () =>
             setCoords={setCoords}
             setBounds={setBounds}
             coords={coords}
-            places={places}
+            places={filteredPlaces.length ? filteredPlaces : places}
             setChildClicked={setChildClicked}
           />
         </Grid>
