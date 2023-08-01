@@ -45,6 +45,9 @@ const App = () =>
    const [coords, setCoords] = useState({})
    const [bounds, setBounds] = useState({})
 
+   const [type, setType] = useState('restaurants')
+   const [rating, setRating] = useState('')
+
    const [isLoading, setIsLoading] = useState(false)
 
    useEffect(() =>
@@ -58,13 +61,13 @@ const App = () =>
    useEffect(() =>
    {
       setIsLoading(true)
-      getPlacesData(bounds.sw, bounds.ne)
+      getPlacesData(type, bounds.sw, bounds.ne)
          .then((data) =>
          {
             setPlaces(data)
             setIsLoading(false)
       })
-   }, [bounds, coords])
+   }, [type, bounds, coords])
    
   return (
     <ThemeProvider theme={theme}>
@@ -75,7 +78,11 @@ const App = () =>
           <List
             places={places}
             childClicked={childClicked}
-            isLoading={isLoading}
+                 isLoading={isLoading}
+                 type={type}
+                 setType={setType}
+                 rating={rating}
+                 setRating={setRating}
           />
         </Grid>
         <Grid

@@ -99,10 +99,10 @@ const PlaceDetails = ({ place, selected, refProp }) =>
           ))}
         </Box>
         <Box display="flex" justifyContent="space-between" gutterBottom>
-          <Typography variant="body1" color="text.primary">
-            Rating: out of {place.num_reviews} reviews
-          </Typography>
           <Rating value={Number(place.rating)} readOnly/>
+          <Typography variant="body1" color="text.primary">
+            out of {place.num_reviews} reviews
+          </Typography>
         </Box>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           <Button
