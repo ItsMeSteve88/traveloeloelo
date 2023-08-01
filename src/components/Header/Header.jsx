@@ -71,7 +71,7 @@ export default function SearchAppBar({setCoords})
       <AppBar position="static">
         <Toolbar>
           
-            <img src="../../../public/travelo.png" width="50px" />
+            <img src="/travelo.png" width="50px" />
           
           <Typography
             variant="h4"
