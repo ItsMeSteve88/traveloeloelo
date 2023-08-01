@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { Autocomplete } from '@react-google-maps/api';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import Autocomplete from '@mui/material/Autocomplete';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,20 +53,38 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({setCoords})
+{
+   const [autocomplete, setAutocomplete] = useState(null);
+
+   const onLoad = (autoC) => setAutocomplete(autoC);
+
+   const onPlaceChanged = () =>
+   {
+      const lat = autocomplete.getPlace().geometry.location.lat();
+      const lng = autocomplete.getPlace().geometry.location.lng();
+      setCoords({lat, lng});
+   }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+           <Toolbar>
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             Travelo
-          </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Typography
               variant="h6"
               noWrap
@@ -73,17 +92,18 @@ export default function SearchAppBar() {
               sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             >
               Explore new places
-                 </Typography>
-                 
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+            </Typography>
+            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+            </Autocomplete>
           </Box>
         </Toolbar>
       </AppBar>
