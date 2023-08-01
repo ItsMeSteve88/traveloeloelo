@@ -2,7 +2,7 @@ import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import { Paper, Typography, Rating, useMediaQuery, Box } from '@mui/material'
 import { LocationOnOutlined } from '@mui/icons-material'
-
+import mapStyles from './mapStyles'
 
 const Map = ({setCoords, setBounds, coords, places, setChildClicked}) =>
 {
@@ -40,7 +40,7 @@ const Map = ({setCoords, setBounds, coords, places, setChildClicked}) =>
         center={coords}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
-        options={""}
+        options={{disableDefaultUI: true, zoomControl: true, styles: mapStyles }}
         onChange={(e) => {
           setCoords({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });

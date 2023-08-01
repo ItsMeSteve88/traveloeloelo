@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react'
-import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select, Box } from '@mui/material'
+import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, Select, Box, } from '@mui/material'
 import PlaceDetails from './../PlaceDetails/PlaceDetails';
 
 const List = ({places, childClicked, isLoading, type, setType, rating, setRating}) =>
@@ -15,9 +15,11 @@ const List = ({places, childClicked, isLoading, type, setType, rating, setRating
 
    const loading = {
      height: "600px",
-     display: "flex",
+      display: "flex",
+      flexDirection: "column",
      justifyContent: "center",
-     alignItems: "center",
+      alignItems: "center",
+     gap: "20px",
    };
    
   return (
@@ -26,7 +28,8 @@ const List = ({places, childClicked, isLoading, type, setType, rating, setRating
         Restaurants, Hotels & Attractions around you
       </Typography>
       {isLoading ? (
-        <Box sx={loading}>
+           <Box sx={loading}>
+              <Typography variant="h6">Searching...</Typography>
           <CircularProgress size="5rem" />
         </Box>
       ) : (

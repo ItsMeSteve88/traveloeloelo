@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Autocomplete } from '@react-google-maps/api';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Autocomplete } from '@react-google-maps/api';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -69,22 +69,19 @@ export default function SearchAppBar({setCoords})
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-           <Toolbar>
+        <Toolbar>
+          
+            <img src="../../../public/travelo.png" width="50px" />
+          
           <Typography
             variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{ marginLeft: '20px', flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
             Travelo
-              </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          </Typography>
+          <Box display='flex' alignItems='center'>
             <Typography
               variant="h6"
               noWrap
