@@ -66,7 +66,7 @@ const App = () =>
       <Header />
       <Grid container spacing={3} sx={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
-              <List places={places} />
+          <List places={places} />
         </Grid>
         <Grid
           item
@@ -78,7 +78,12 @@ const App = () =>
             alignItems: "center",
           }}
         >
-              <Map setCoords={setCoords} setBounds={setBounds} coords={coords} places={places} />
+          <Map
+            setCoords={setCoords}
+            setBounds={setBounds}
+            coords={coords}
+            places={places}
+          />
         </Grid>
       </Grid>
     </ThemeProvider>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, Avatar } from '@mui/material'
+import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, Rating } from '@mui/material'
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ArrowUpwardOutlinedIcon from '@mui/icons-material/ArrowUpwardOutlined';
 import PhoneOutlinedIcon from '@mui/icons-material/PhoneOutlined';
@@ -95,6 +95,12 @@ const PlaceDetails = ({place}) => {
               sx={{ color: "black", border: "2px solid #fbeaab" }}
             />
           ))}
+        </Box>
+        <Box display="flex" justifyContent="space-between" gutterBottom>
+          <Typography variant="body1" color="text.primary">
+            Rating: out of {place.num_reviews} reviews
+          </Typography>
+          <Rating value={Number(place.rating)} readOnly/>
         </Box>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           <Button
